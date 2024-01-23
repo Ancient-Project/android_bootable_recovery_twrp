@@ -776,5 +776,7 @@
 		<string name="restore_with_pattern1">Pattern is enabled</string>
 		<string name="restore_with_pattern2">Pattern should be disabled before restore</string>
 		<string name="reboot_after_restore">It is recommended to reboot Android once after first boot.</string>
+		<string name="pb_wipe_module">Module magisk-ksu</string>
+		<string name="module_done">-- Module Wipe Complete!</string>
 	</resources>
 </language>

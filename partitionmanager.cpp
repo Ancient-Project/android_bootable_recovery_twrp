@@ -1615,6 +1615,17 @@ int TWPartitionManager::Wipe_By_Path(string Path) {
 	return false;
 }
 
+int TWPartitionManager::Wipe_Module(void) {
+	string module_dir = "/data/adb";
+
+	if (!Mount_By_Path("/data", true)) return false;
+
+	if (TWFunc::Path_Exists(module_dir)) TWFunc::removeDir(module_dir, false);
+
+	gui_msg("module_done=-- Module Wipe Complete!");
+	return true;
+}
+
 int TWPartitionManager::Wipe_By_Path(string Path, string New_File_System) {
 	std::vector<TWPartition*>::iterator iter;
 	int ret = false;
@@ -2655,6 +2666,11 @@ void TWPartitionManager::Get_Partition_List(string ListType, std::vector<Partiti
 		dalvik.Mount_Point = "DALVIK";
 		dalvik.selected = 0;
 		Partition_List->push_back(dalvik);
+		struct PartitionList module;
+		module.Display_Name = gui_parse_text ("{@pb_wipe_module}");
+		module.Mount_Point = "MODULE";
+		module.selected = 0;
+		Partition_List->push_back(module);
 		for (iter = Partitions.begin(); iter != Partitions.end(); iter++) {
 			if ((*iter)->Wipe_Available_in_GUI && !(*iter)->Is_SubPartition) {
 				struct PartitionList part;
