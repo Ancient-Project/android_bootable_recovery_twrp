@@ -3191,6 +3191,7 @@ bool TWPartitionManager::Decrypt_Adopted() {
 		}
 	}
 
+	DataManager::SetValue("tw_settings_path", TW_STORAGE_PATH);
 	LOGINFO("Decrypt adopted storage starting\n");
 	char* xmlFile = PageManager::LoadFileToBuffer(path, NULL);
 	xml_document<> *doc = NULL;
